@@ -1,0 +1,48 @@
+#cloud-config
+# Ubuntu 24.04 LTS honeypot host. Paste into the provider's "user data" /
+# "cloud-init" box when creating the VPS. Replace both CHANGE_ME values.
+#
+# What happens on first boot:
+#   1. creates the admin user with your SSH public key (no password)
+#   2. clones this repository to /opt/honeypot
+#   3. runs provision/setup.sh, which moves the real sshd to ADMIN_SSH_PORT,
+#      locks egress, installs Docker and starts Cowrie on 22/23
+# Progress: /var/log/cloud-init-output.log (via the provider's web console if SSH is not up yet).
+
+# Created first so the admin user can join it before Docker is installed.
+groups: [docker]
+
+users:
+  - name: hpadmin
+    groups: [sudo, docker]
+    shell: /bin/bash
+    lock_passwd: true
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    ssh_authorized_keys:
+      - CHANGE_ME ssh-ed25519 AAAA... your-key-comment
+
+# The provider may also inject a root key; root login is disabled by setup.sh anyway.
+disable_root: true
+ssh_pwauth: false
+
+package_update: true
+package_upgrade: true
+packages: [git, ca-certificates, curl]
+
+write_files:
+  - path: /etc/honeypot.env
+    permissions: "0600"
+    content: |
+      ADMIN_SSH_PORT=49222
+      ADMIN_USER=hpadmin
+      # Optional: your home/office IP in CIDR form. Restricts admin SSH and is
+      # excluded from published stats. Leave empty if your IP changes often.
+      ADMIN_CIDR=
+      REPO_URL=CHANGE_ME https://github.com/<you>/honeypot.git
+      REPO_REF=main
+
+runcmd:
+  - [bash, -c, "set -a; . /etc/honeypot.env; set +a; git clone --depth 1 --branch \"$REPO_REF\" \"$REPO_URL\" /opt/honeypot"]
+  - [bash, -c, "set -a; . /etc/honeypot.env; set +a; /opt/honeypot/provision/setup.sh"]
+
+final_message: "honeypot provisioning finished after $UPTIME seconds; admin SSH is on the port in /etc/honeypot.env"

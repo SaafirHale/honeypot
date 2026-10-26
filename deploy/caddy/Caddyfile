@@ -1,0 +1,32 @@
+# Serves exactly one file: the collector's stats.json. Everything else is 404.
+# STATS_SITE is a domain in production (automatic HTTPS) or :8080 for plain local HTTP.
+{
+	admin off
+	http_port 8080
+	https_port 8443
+	email {$ACME_EMAIL}
+}
+
+{$STATS_SITE::8080} {
+	root * /srv
+	header {
+		Access-Control-Allow-Origin {$CORS_ORIGIN:https://saafirhale.com}
+		Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+		Vary Origin
+		Cache-Control "public, max-age=300"
+		Content-Security-Policy "default-src 'none'; frame-ancestors 'none'"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		-Server
+	}
+	@stats {
+		path /stats.json
+		method GET HEAD OPTIONS
+	}
+	handle @stats {
+		file_server
+	}
+	handle {
+		respond 404
+	}
+}

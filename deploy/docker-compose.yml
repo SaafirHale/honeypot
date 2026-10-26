@@ -1,0 +1,123 @@
+# Cowrie SSH/Telnet honeypot + stats collector (+ optional public stats endpoint).
+#
+#   cp .env.example .env        # edit ports, admin CIDR, stats domain
+#   docker compose up -d --build
+#   docker compose --profile publish up -d   # also serve stats.json over HTTPS
+#
+# Host-level controls that compose cannot express live in deploy/host/:
+# egress-lock.sh (drops every new connection that starts inside the honeypot
+# network) must be active before this stack is exposed to the internet.
+
+name: honeypot
+
+services:
+  cowrie:
+    image: ${COWRIE_IMAGE:-cowrie/cowrie:3.1.4}
+    restart: unless-stopped
+    # The image already runs as uid 999; stated here so a changed image cannot silently run as root.
+    user: "999:999"
+    ports:
+      - "${HONEYPOT_BIND:-0.0.0.0}:${HONEYPOT_SSH_PORT:-22}:2222"
+      - "${HONEYPOT_BIND:-0.0.0.0}:${HONEYPOT_TELNET_PORT:-23}:2223"
+    volumes:
+      - ./cowrie/cowrie.cfg:/cowrie/cowrie-git/etc/cowrie.cfg:ro
+      - ./cowrie/userdb.txt:/cowrie/cowrie-git/etc/userdb.txt:ro
+      - cowrie-var:/cowrie/cowrie-git/var
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777,noexec,nosuid,nodev
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 384m
+    memswap_limit: 384m
+    cpus: 0.50
+    pids_limit: 128
+    ulimits:
+      nofile: { soft: 4096, hard: 4096 }
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+    networks: [honeynet]
+
+  collector:
+    build: ../collector
+    image: honeypot-collector:local
+    restart: unless-stopped
+    depends_on: [cowrie]
+    # No network at all: it reads files and writes one file.
+    network_mode: none
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 256m
+    cpus: 0.50
+    pids_limit: 32
+    environment:
+      HP_EXCLUDE: ${ADMIN_CIDR:-}
+    command:
+      - --logs=/cowrie-var/log/cowrie
+      - --out=/stats/stats.json
+      - --country-db=/geoip/dbip-country-lite.mmdb
+      - --asn-db=/geoip/dbip-asn-lite.mmdb
+      - --days=${STATS_DAYS:-30}
+      - --dataset=${STATS_DATASET:-live}
+      - --interval=${COLLECT_INTERVAL:-600}
+    volumes:
+      - cowrie-var:/cowrie-var:ro
+      - ${GEOIP_DIR:-../data/geoip}:/geoip:ro
+      - stats:/stats
+    logging:
+      driver: json-file
+      options: { max-size: "5m", max-file: "2" }
+
+  stats-web:
+    profiles: [publish]
+    image: ${CADDY_IMAGE:-caddy:2.11.7-alpine}
+    restart: unless-stopped
+    depends_on: [collector]
+    ports:
+      - "${STATS_HTTP_PORT:-80}:8080"
+      - "${STATS_HTTPS_PORT:-443}:8443"
+    environment:
+      STATS_SITE: ${STATS_SITE:-:8080}
+      CORS_ORIGIN: ${CORS_ORIGIN:-https://saafirhale.com}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - stats:/srv:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    cpus: 0.25
+    pids_limit: 64
+    logging:
+      driver: json-file
+      options: { max-size: "5m", max-file: "2" }
+    # Separate network: the web server shares nothing with the honeypot.
+    networks: [web]
+
+networks:
+  honeynet:
+    name: hp_honeynet
+    driver: bridge
+    driver_opts:
+      # Fixed bridge name so host firewall rules can match it before it exists.
+      com.docker.network.bridge.name: br-honeynet
+      com.docker.network.bridge.enable_icc: "false"
+    ipam:
+      config:
+        - subnet: ${HONEYNET_SUBNET:-172.30.0.0/24}
+  web:
+    name: hp_web
+
+volumes:
+  cowrie-var:
+  stats:
+  caddy-data:
+  caddy-config:

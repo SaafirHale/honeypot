@@ -1,0 +1,13 @@
+# Which fake credentials let an attacker into the emulated shell.
+# Format: user:x:password   ('*' = any, '!' prefix = deny, '/re/' = regex). First match wins.
+# Letting most root guesses in is what produces command data; refusing the two
+# most common pairs keeps it from looking like it accepts anything.
+root:x:!root
+root:x:!123456
+root:x:!/honeypot/i
+root:x:*
+admin:x:!admin
+admin:x:*
+ubuntu:x:!ubuntu
+ubuntu:x:*
+pi:x:raspberry

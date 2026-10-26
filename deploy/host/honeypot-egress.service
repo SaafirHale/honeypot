@@ -1,0 +1,16 @@
+[Unit]
+Description=Block outbound connections from the honeypot network (br-honeynet)
+# Runs before Docker so the honeypot never starts without the lock in place.
+Before=docker.service
+Wants=network-pre.target
+After=network-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/honeypot/deploy/host/egress-lock.sh apply
+ExecStop=/opt/honeypot/deploy/host/egress-lock.sh remove
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=docker.service
