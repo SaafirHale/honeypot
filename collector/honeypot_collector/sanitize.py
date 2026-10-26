@@ -18,7 +18,7 @@ _IPV4 = re.compile(r"(?<![\d.])(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})(?![\d.
 _IPV6 = re.compile(r"(?<![\w:])(?:[0-9A-Fa-f]{0,4}:){2,7}[0-9A-Fa-f]{0,4}(?![\w:])")
 _URL_SCHEME = re.compile(r"\b(https?|ftp|tftp)://", re.IGNORECASE)
 _URL_HOST = re.compile(r"(hxxps?|fxp|tfxp)://([^/\s'\"`;|&)]+)", re.IGNORECASE)
-_CONTROL = re.compile(r"[\x00-\x08\x0b-\x1f\x7f-\x9f​-‏ -‮⁦-⁩]")
+_CONTROL = re.compile(r"[\x00-\x08\x0b-\x1f\x7f-\x9f\u200b-\u200f\u2028-\u202e\u2066-\u2069]")
 _WS = re.compile(r"\s+")
 
 _DEFANG = {"http": "hxxp", "https": "hxxps", "ftp": "fxp", "tftp": "tfxp"}
@@ -60,7 +60,7 @@ def clean_text(value: object, max_len: int) -> str:
     text = _CONTROL.sub("", text)
     text = _WS.sub(" ", text).strip()
     if len(text) > max_len:
-        text = text[: max_len - 1].rstrip() + "…"
+        text = text[: max_len - 1].rstrip() + "\u2026"
     return text
 
 

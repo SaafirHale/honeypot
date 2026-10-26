@@ -51,8 +51,8 @@ def test_out_of_range_octets_untouched():
 
 
 def test_control_and_bidi_characters_stripped():
-    out = sanitize_command("echo \x1b[31mred\x07 ‮gnp.exe")
-    assert "\x1b" not in out and "\x07" not in out and "‮" not in out
+    out = sanitize_command("echo \x1b[31mred\x07 \u202egnp.exe")
+    assert "\x1b" not in out and "\x07" not in out and "\u202e" not in out
 
 
 def test_whitespace_collapsed():
@@ -61,7 +61,7 @@ def test_whitespace_collapsed():
 
 def test_long_command_truncated_with_ellipsis():
     out = sanitize_command("echo " + "A" * 500, max_len=40)
-    assert len(out) == 40 and out.endswith("…")
+    assert len(out) == 40 and out.endswith("\u2026")
 
 
 def test_credentials_empty_and_ip():

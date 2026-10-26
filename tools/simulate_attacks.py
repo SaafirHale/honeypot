@@ -49,16 +49,36 @@ def ssh_session(host: str, port: int, user: str, password: str, run: list[str],
     except paramiko.AuthenticationException:
         return "auth-failed"
     try:
-        for cmd in run:
-            _, stdout, _ = client.exec_command(cmd, timeout=10)
-            stdout.channel.recv_exit_status()
         if upload:
             sftp = client.open_sftp()
             sftp.putfo(io.BytesIO(TEST_PAYLOAD), "/tmp/.local-test")
             sftp.close()
+        # Interactive shell, one line at a time: Cowrie ends the connection when an
+        # exec channel closes, and most bots drive a shell like this anyway.
+        chan = client.invoke_shell()
+        chan.settimeout(10)
+        _drain(chan)
+        for cmd in run:
+            chan.send(cmd + "\n")
+            _drain(chan)
+        chan.send("exit\n")
         return "ok"
     finally:
         client.close()
+
+
+def _drain(chan: paramiko.Channel, timeout: float = 6) -> bytes:
+    """Read shell output until the prompt comes back (or the timeout passes)."""
+    buf = b""
+    end = time.time() + timeout
+    while time.time() < end:
+        if chan.recv_ready():
+            buf += chan.recv(4096)
+            if buf.rstrip().endswith((b"#", b"$")):
+                break
+        else:
+            time.sleep(0.05)
+    return buf
 
 
 def _read_until(sock: socket.socket, needles: tuple[bytes, ...], timeout: float = 8) -> bytes:
@@ -131,7 +151,7 @@ def main() -> int:
         results[f"telnet-{r}"] += 1
         print(f"round {i + 1}/{args.rounds}: {results}")
     # Make sure at least one guaranteed-good login per protocol happened.
-    ssh_session(args.host, args.ssh_port, "root", "hunter2", COMMANDS, upload=False)
+    ssh_session(args.host, args.ssh_port, "root", "hunter2", COMMANDS, upload=True)
     telnet_session(args.host, args.telnet_port, "root", "hunter2", COMMANDS[:4])
     print("done:", results)
     return 0
