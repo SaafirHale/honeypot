@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+
+# Node
+node_modules/
+dashboard/.next/
+dashboard/out/
+dashboard/next-env.d.ts
+*.tsbuildinfo
+
+# GeoIP databases are downloaded, not committed (CC BY 4.0, ~18 MB, monthly builds)
+data/geoip/*.mmdb
+data/geoip/*.gz
+
+# Local deploy settings and anything Cowrie writes
+deploy/.env
+deploy/var/
+
+# Never commit captured payloads or tty transcripts
+**/downloads/
+**/tty/

