@@ -24,3 +24,4 @@ deploy/var/
 # Never commit captured payloads or tty transcripts
 **/downloads/
 **/tty/
+.claude/

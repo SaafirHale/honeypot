@@ -36,7 +36,7 @@ deploy/
   host/               egress-lock.sh + systemd unit, retention.sh, update-geoip.sh
 provision/            cloud-init.yaml, setup.sh (Ubuntu 24.04)
 dashboard/            Next.js 15 static export, reads stats.json at runtime
-samples/              synthetic/ (generated) and local-docker/ (real Cowrie output) logs + stats
+samples/              synthetic/ (generated) and local-cowrie/ (real Cowrie 3.1.4 output) logs + stats
 tools/                generate_sample_logs.py, simulate_attacks.py
 docs/                 THREAT_MODEL.md, RUNBOOK.md, VPS_OPTIONS.md
 ```
@@ -62,7 +62,23 @@ cd collector && ../.venv/bin/python -m pytest -q && cd ..
 cd dashboard && npm install && npm test && npm run build && npm run serve   # http://localhost:3101
 ```
 
-The real sensor, end to end, on Docker Desktop:
+Real Cowrie without Docker (how `samples/local-cowrie/` was produced). Cowrie 3.1.4 runs
+natively under Python 3.12, Windows included, with this repo's config bound to localhost:
+
+```bash
+python -m venv cowrie-venv && cowrie-venv/bin/pip install cowrie==3.1.4
+mkdir -p run/etc run/var/log/cowrie run/var/lib/cowrie/downloads run/var/lib/cowrie/tty
+sed 's/interface=0.0.0.0/interface=127.0.0.1/' deploy/cowrie/cowrie.cfg > run/etc/cowrie.cfg
+cp deploy/cowrie/userdb.txt run/etc/ && cd run && ../cowrie-venv/bin/twistd -n cowrie &
+python tools/simulate_attacks.py --ssh-port 2222 --telnet-port 2223
+```
+
+There is no egress lock in this mode: Cowrie's emulated `wget` really fetches its URL
+(the simulator only uses example.com). That behaviour is why the deployed stack drops
+outbound traffic at the host.
+
+The real sensor, end to end, on Docker Desktop. This path has not been run yet because
+the development machine has no Docker; it is the first thing to do on a box that does:
 
 ```bash
 cd deploy
@@ -76,6 +92,17 @@ To mount the dashboard on the site, build with `NEXT_PUBLIC_BASE_PATH=/honeypot`
 `NEXT_PUBLIC_STATS_URL=https://<stats-host>/stats.json`. Or copy
 `dashboard/src/components/honeypot/` and `src/lib/stats.ts` into the site. Its
 `sh-*` classes and tokens already match the site's `globals.css`.
+
+## What has been verified
+
+| Check | Result |
+|---|---|
+| Collector unit + integration tests (`collector/tests`) | 42 passed, including one against real Cowrie 3.1.4 output |
+| Dashboard parser tests (`npm test`) | 5 passed |
+| Dashboard `tsc --noEmit` and `next build` (static export) | clean |
+| Real Cowrie 3.1.4 + `simulate_attacks.py` → collector → dashboard | 35 sessions (18 SSH, 17 Telnet), 68 commands, 2 payload hashes (wget download, SFTP upload) rendered in the browser |
+| Browser preview: hover tooltips, light/dark, 375 px width without horizontal scroll | checked; screenshots in [docs/screenshots](docs/screenshots) |
+| Docker compose stack, egress lock, `setup.sh` on Ubuntu | **not yet run**: needs Docker / a VPS |
 
 ## Deploy
 
