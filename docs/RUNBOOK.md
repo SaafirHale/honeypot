@@ -26,7 +26,7 @@ talking to Cowrie and anything you type is logged.
    ssh -o StrictHostKeyChecking=no root@<vps-ip>      # should reach Cowrie's fake prompt
    ```
 7. Public stats (optional): point a DNS record such as `hp.saafirhale.com` at the
-   VPS, set `STATS_SITE=hp.saafirhale.com` and `ACME_EMAIL` in `deploy/.env`, then
+   VPS, set `STATS_SITE=hp.saafirhale.com` in `deploy/.env`, then
    `docker compose --profile publish up -d`. Caddy gets a certificate on its own.
 
 No cloud-init? Clone the repo to `/opt/honeypot` by hand and run

@@ -1,0 +1,17 @@
+# Local-development override. Not used on the VPS.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml --profile publish up -d --build
+#
+# Passes a root CA to the collector build as a BuildKit secret, for machines
+# behind a TLS-inspecting proxy. Put the proxy's PEM root certificate at
+# deploy/local/extra-ca.pem (gitignored). TLS verification stays on.
+
+services:
+  collector:
+    build:
+      context: ../collector
+      secrets: [extra_ca]
+
+secrets:
+  extra_ca:
+    file: ./local/extra-ca.pem

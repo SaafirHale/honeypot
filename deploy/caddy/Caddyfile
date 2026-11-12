@@ -4,7 +4,6 @@
 	admin off
 	http_port 8080
 	https_port 8443
-	email {$ACME_EMAIL}
 }
 
 {$STATS_SITE::8080} {

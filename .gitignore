@@ -25,3 +25,4 @@ deploy/var/
 **/downloads/
 **/tty/
 .claude/
+deploy/local/
