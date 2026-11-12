@@ -38,27 +38,37 @@ remove_family() {
   "$ipt" -t mangle -X "$CHAIN" 2>/dev/null || true
 }
 
+# Run one probe inside the cowrie container. Prints BLOCKED, OPEN, or nothing if
+# the probe could not run. The image is distroless; its Python is the only tool.
+probe() {
+  { ( cd "$(dirname "$0")/.." && docker compose exec -T cowrie /cowrie/cowrie-env/bin/python3 -c "$1" ) \
+    2>/dev/null || true; } | tr -d '\r' | tail -n 1
+}
+
+# Fails closed: anything other than an explicit BLOCKED from both probes is a failure,
+# including "the container is not running" or "docker compose could not find the project".
 verify() {
-  local compose_dir
-  compose_dir="$(cd "$(dirname "$0")/.." && pwd)"
-  echo "Trying outbound TCP from inside the cowrie container (should fail)..."
-  # The cowrie image is distroless; its Python is the only tool available, which is the point.
-  if docker compose --project-directory "$compose_dir" exec -T cowrie \
-      /cowrie/cowrie-env/bin/python3 -c \
-      "import socket; socket.create_connection(('1.1.1.1', 443), timeout=4); print('CONNECTED')" \
-      2>/dev/null | grep -q CONNECTED; then
-    echo "FAIL: container reached 1.1.1.1:443. Egress is NOT blocked." >&2
-    return 1
+  local tcp dns
+  echo "Trying outbound TCP from inside the cowrie container (should be blocked)..."
+  tcp="$(probe "import socket
+try:
+    socket.create_connection(('1.1.1.1', 443), timeout=4); print('OPEN')
+except OSError:
+    print('BLOCKED')")"
+  echo "Trying DNS from inside the cowrie container (should be blocked)..."
+  dns="$(probe "import socket
+socket.setdefaulttimeout(4)
+try:
+    socket.gethostbyname('example.com'); print('OPEN')
+except OSError:
+    print('BLOCKED')")"
+  echo "  tcp=${tcp:-<probe did not run>} dns=${dns:-<probe did not run>}"
+  if [ "$tcp" = "BLOCKED" ] && [ "$dns" = "BLOCKED" ]; then
+    echo "OK: no outbound TCP, no DNS from the honeypot network."
+    return 0
   fi
-  echo "Trying DNS from inside the cowrie container (should fail)..."
-  if docker compose --project-directory "$compose_dir" exec -T cowrie \
-      /cowrie/cowrie-env/bin/python3 -c \
-      "import socket; socket.setdefaulttimeout(4); print(socket.gethostbyname('example.com'))" \
-      2>/dev/null | grep -qE '^[0-9.]+$'; then
-    echo "FAIL: container resolved a public name. DNS egress is NOT blocked." >&2
-    return 1
-  fi
-  echo "OK: no outbound TCP, no DNS from the honeypot network."
+  echo "FAIL: egress is not proven blocked. Do not expose this host until it is." >&2
+  return 1
 }
 
 case "${1:-}" in
