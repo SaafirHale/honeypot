@@ -48,7 +48,11 @@ The worst outcome: abuse reports, account suspension, and real harm to someone e
   TCP, UDP, DNS and the cloud metadata address. Replies to inbound attackers
   (`ESTABLISHED,RELATED`) pass. The rule matches on the bridge name, so systemd
   installs it *before* `docker.service` starts and the container never runs unlocked.
-  `egress-lock.sh verify` proves it by opening a socket from inside the container.
+  `egress-lock.sh verify` proves it by opening a socket and resolving a name from
+  inside the real container. It fails closed: anything but an explicit "blocked"
+  from both probes, including a probe that could not run, is a failure, and
+  `setup.sh` stops there. `tools/test_egress_lock.sh` tests the rule set itself
+  (open before, dropped after, inbound replies unaffected).
 * **Cowrie's fake `wget`/`curl` make real HTTP requests.** Before 2.9.0 these
   could be abused for amplification (GHSA-83jg-m2pm-4jxj). The image is pinned to
   3.1.4, and the egress lock makes those requests fail regardless of version.
@@ -70,6 +74,9 @@ The worst outcome: abuse reports, account suspension, and real harm to someone e
   `userland-proxy: false`. Unattended security upgrades with automatic reboot.
 * Lateral: the collector has `network_mode: none`; Caddy is on a separate
   network. The only shared surface is a read-only volume of Cowrie's own logs.
+* Caddy keeps one capability, `NET_BIND_SERVICE`: its binary carries that file
+  capability and the kernel will not exec it otherwise. It still listens on
+  unprivileged ports 8080/8443, runs with a read-only rootfs and serves one file.
 * Residual risk: a kernel or runc 0-day. Mitigation is that the host holds
   nothing of value and is rebuilt rather than cleaned (see RUNBOOK, *If compromised*).
 

@@ -77,16 +77,36 @@ There is no egress lock in this mode: Cowrie's emulated `wget` really fetches it
 (the simulator only uses example.com). That behaviour is why the deployed stack drops
 outbound traffic at the host.
 
-The real sensor, end to end, on Docker Desktop. This path has not been run yet because
-the development machine has no Docker; it is the first thing to do on a box that does:
+The real sensor, end to end, on Docker Desktop (run on Windows 11 + WSL2, Docker 29.9):
 
 ```bash
 cd deploy
-printf 'HONEYPOT_SSH_PORT=2222\nHONEYPOT_TELNET_PORT=2323\nHONEYPOT_BIND=127.0.0.1\nSTATS_DATASET=local-test\nCOLLECT_INTERVAL=30\nSTATS_SITE=:8080\nCORS_ORIGIN=*\nSTATS_HTTP_PORT=8088\nSTATS_HTTPS_PORT=8443\n' > .env
-docker compose --profile publish up -d --build
+printf 'HONEYPOT_SSH_PORT=2222
+HONEYPOT_TELNET_PORT=2323
+HONEYPOT_BIND=127.0.0.1
+STATS_DATASET=local-test
+STATS_DAYS=2
+COLLECT_INTERVAL=20
+STATS_SITE=:8080
+CORS_ORIGIN=*
+STATS_BIND=127.0.0.1
+STATS_HTTP_PORT=8088
+STATS_HTTPS_PORT=8443
+' > .env
+# Behind a TLS-inspecting proxy, put its root CA (PEM) at deploy/local/extra-ca.pem and
+# add the local override; it reaches the collector build as a BuildKit secret only.
+docker compose -f docker-compose.yml -f docker-compose.local.yml --profile publish up -d --build
 python ../tools/simulate_attacks.py --ssh-port 2222 --telnet-port 2323
-curl http://localhost:8088/stats.json
+curl http://127.0.0.1:8088/stats.json
+bash host/egress-lock.sh verify      # on Docker Desktop this FAILS, correctly: there is no lock
+bash ../tools/test_egress_lock.sh [proxy-ca.pem]   # exercises the lock script itself; see below
 ```
+
+On Docker Desktop the "host" firewall lives inside its VM, which this repo does not
+modify. `tools/test_egress_lock.sh` instead builds a router container (NET_ADMIN in its
+own namespace only) with a honeypot stand-in behind it, runs `egress-lock.sh` on the
+router unchanged, and checks egress before and after. On the VPS, `setup.sh` runs
+`egress-lock.sh verify` against the real container and stops if it does not pass.
 
 To mount the dashboard on the site, build with `NEXT_PUBLIC_BASE_PATH=/honeypot` and
 `NEXT_PUBLIC_STATS_URL=https://<stats-host>/stats.json`. Or copy
@@ -102,7 +122,12 @@ To mount the dashboard on the site, build with `NEXT_PUBLIC_BASE_PATH=/honeypot`
 | Dashboard `tsc --noEmit` and `next build` (static export) | clean |
 | Real Cowrie 3.1.4 + `simulate_attacks.py` → collector → dashboard | 35 sessions (18 SSH, 17 Telnet), 68 commands, 2 payload hashes (wget download, SFTP upload) rendered in the browser |
 | Browser preview: hover tooltips, light/dark, 375 px width without horizontal scroll | checked; screenshots in [docs/screenshots](docs/screenshots) |
-| Docker compose stack, egress lock, `setup.sh` on Ubuntu | **not yet run**: needs Docker / a VPS |
+| Compose stack on Docker Desktop: Cowrie 3.1.4 container + collector + Caddy, attacked by `simulate_attacks.py` | 26 sessions (13 SSH, 13 Telnet), 49 commands, 2 payload hashes, served by Caddy and rendered by the dashboard over a cross-origin fetch |
+| Hardening as applied (`docker inspect`) | Cowrie uid 999, collector uid 10001; read-only rootfs, `cap_drop: ALL`, no-new-privileges, memory/CPU/PID limits and log rotation on all three; collector `network_mode: none` (outbound attempt: *Network is unreachable*); idle memory about 84 MB total |
+| Caddy endpoint | `/stats.json` 200 with CORS, CSP `default-src 'none'`, nosniff, no-referrer; any other path 404 |
+| `egress-lock.sh` rules (`tools/test_egress_lock.sh`) | 8/8: outbound TCP and DNS open before, dropped and logged after; inbound connections still answered; idempotent apply; `remove` restores egress |
+| `egress-lock.sh verify` fails closed | reports FAIL on a container with open egress and when the probe cannot run |
+| `setup.sh` / cloud-init on a real Ubuntu VPS | **not yet run**: needs the VPS |
 
 ## Deploy
 
