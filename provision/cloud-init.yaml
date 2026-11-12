@@ -1,6 +1,6 @@
 #cloud-config
 # Ubuntu 24.04 LTS honeypot host. Paste into the provider's "user data" /
-# "cloud-init" box when creating the VPS. Replace both CHANGE_ME values.
+# "cloud-init" box when creating the VPS. Replace the CHANGE_ME key.
 #
 # What happens on first boot:
 #   1. creates the admin user with your SSH public key (no password)
@@ -38,7 +38,7 @@ write_files:
       # Optional: your home/office IP in CIDR form. Restricts admin SSH and is
       # excluded from published stats. Leave empty if your IP changes often.
       ADMIN_CIDR=
-      REPO_URL=CHANGE_ME https://github.com/<you>/honeypot.git
+      REPO_URL=https://github.com/SaafirHale/honeypot.git
       REPO_REF=main
 
 runcmd:

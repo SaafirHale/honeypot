@@ -15,7 +15,7 @@ talking to Cowrie and anything you type is logged.
 1. Pick a provider ([VPS_OPTIONS.md](VPS_OPTIONS.md)), Ubuntu 24.04 LTS, 1 vCPU / 1 GB.
 2. Make a dedicated key: `ssh-keygen -t ed25519 -f ~/.ssh/honeypot -C honeypot-admin`.
 3. Paste `provision/cloud-init.yaml` into the provider's user-data field after
-   replacing both `CHANGE_ME` values (public key, repo URL). Set `ADMIN_CIDR` if
+   replacing the `CHANGE_ME` public key. Set `ADMIN_CIDR` if
    your IP is stable.
 4. Create the server. Wait 5 to 10 minutes. Watch progress in the provider's web
    console: `tail -f /var/log/cloud-init-output.log`.
